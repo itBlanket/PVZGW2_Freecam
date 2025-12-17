@@ -2,7 +2,6 @@
 #include "classes.h"
 #include "UltimateProxyDLL.h"
 #include "utilities.h"
-#include "Windows.h"
 
 #define OFFSET_ACTIVATEFREECAMFUNCTION 0x140412100
 #define OFFSET_DEACTIVATEFREECAMFUNCTION 0x140412230
@@ -41,9 +40,9 @@ DWORD WINAPI MainThread(LPVOID arg)
                         GameContext->GameView->SetFreeCameraMode(2);
 
                         using deactivateFreeCameraFunction = void(__fastcall*)(FreecamData*, int);
-                        deactivateFreeCameraFunction activateFreeCamera = (deactivateFreeCameraFunction)OFFSET_DEACTIVATEFREECAMFUNCTION;
+                        deactivateFreeCameraFunction deactivateFreeCamera = (deactivateFreeCameraFunction)OFFSET_DEACTIVATEFREECAMFUNCTION;
 
-                        activateFreeCamera(GameContext->GameView->FreeCamera->FreecamData, 0);
+                        deactivateFreeCamera(GameContext->GameView->FreeCamera->FreecamData, 0);
 
                         freecamEnabled = false;
                     }
